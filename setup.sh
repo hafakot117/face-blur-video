@@ -1,24 +1,42 @@
 #!/bin/bash
-# One-shot setup for face_blur_video.py on macOS (Intel + Apple Silicon)
-set -e
 
 echo "=== face_blur setup ==="
 
-# Install Homebrew if missing
-if ! command -v brew &>/dev/null; then
-  echo "Installing Homebrew..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+# Install ffmpeg
+echo "Installing ffmpeg..."
+if ! command -v ffmpeg &> /dev/null; then
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        brew install ffmpeg
+    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+        sudo apt-get update
+        sudo apt-get install -y ffmpeg
+    fi
+else
+    echo "ffmpeg already installed ✓"
 fi
 
-# Add Homebrew to PATH (handles both Apple Silicon /opt/homebrew and Intel /usr/local)
-eval "$(/opt/homebrew/bin/brew shellenv 2>/dev/null || /usr/local/bin/brew shellenv 2>/dev/null)"
+# Create virtual environment
+echo "Creating Python virtual environment..."
+if [ ! -d "venv" ]; then
+    python3 -m venv venv
+    echo "Virtual environment created ✓"
+else
+    echo "Virtual environment already exists ✓"
+fi
 
-echo "Installing ffmpeg..."
-brew install ffmpeg
+# Activate virtual environment
+echo "Activating virtual environment..."
+source venv/bin/activate
 
+# Install Python dependencies
 echo "Installing Python dependencies..."
-pip3 install -r requirements.txt
+pip install --upgrade pip
+pip install opencv-python numpy pillow
 
 echo ""
-echo "✓ Setup complete! Usage:"
-echo "  python3 face_blur_video.py /path/to/video.mp4"
+echo "✅ Setup complete!"
+echo ""
+echo "To use the face blur tool:"
+echo "  1. Activate the virtual environment: source venv/bin/activate"
+echo "  2. Run the GUI: python face_blur_gui.py"
+echo ""
