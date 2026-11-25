@@ -1,0 +1,17 @@
+{
+  "name": "Face Blur",
+  "short_name": "Face Blur",
+  "description": "טשטוש פרצופים בווידאו - מעובד על ה-iMac",
+  "lang": "he",
+  "dir": "rtl",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4f4f8",
+  "theme_color": "#5b5bd6",
+  "icons": [
+    {"src": "/static/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/static/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "/static/icon-180.png", "sizes": "180x180", "type": "image/png"}
+  ]
+}
