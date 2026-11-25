@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Face Blur</title>
+<meta name="theme-color" content="#5b5bd6">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Face Blur">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/static/icon-180.png">
+<link rel="icon" type="image/png" href="/static/icon-192.png">
+<link rel="stylesheet" href="/static/style.css?v=3.0">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><img src="/static/icon-192.png" alt=""><span>Face Blur</span></div>
+  <button class="pill" id="statusPill" type="button" onclick="location.hash='#/status'">
+    <span class="dot"></span><span id="statusText">מתחבר…</span>
+  </button>
+</header>
+
+<main id="app" aria-live="polite"></main>
+
+<nav class="tabbar" id="tabbar">
+  <a href="#/new" data-tab="new"><span class="ico">＋</span><span>חדש</span></a>
+  <a href="#/jobs" data-tab="jobs"><span class="ico">☰</span><span>עבודות</span><b class="badge" id="activeBadge" hidden></b></a>
+  <a href="#/status" data-tab="status"><span class="ico">◉</span><span>iMac</span></a>
+</nav>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<script src="/static/app.js?v=3.0"></script>
+</body>
+</html>
